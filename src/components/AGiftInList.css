@@ -1,0 +1,71 @@
+.sl>div{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+.css-vpmu79-JoyCardContent-root{
+    justify-content: space-around;
+    flex-wrap: wrap
+
+
+}
+           
+.css-zw3mfo-MuiModal-root-MuiDialog-root{
+    z-index: 0;
+}
+.warpData{
+    display: flex;
+    align-items: baseline;
+}
+.MuiButtonBase-root{
+    z-index: 10;
+}
+#root>.MuiButtonBase-root{
+font-size: 30px;
+}
+.MuiCard-root{
+  text-align: center;  
+}
+ .opinionData{
+    display: flex;
+    min-height:350px ;
+    width: 500px;
+    flex-direction: column;
+    justify-content: center
+
+
+
+}
+.MuiSwitch-startDecorator,.MuiSwitch-endDecorator{
+font-size: 40px;
+} 
+.css-vhzqxm-JoyTextarea-endDecorator{
+flex-direction: column;
+}
+.button-send-opinion {
+    margin-left: auto;
+    margin-right: auto;
+}
+body{
+    background-image: url(../assets/background-site.png);
+    background-size: contain;
+}
+#root>.MuiButtonBase-root {
+background-color:white;
+}
+#root>.css-9mgopn-MuiDivider-root , .opinionShowWarp>.css-9mgopn-MuiDivider-root{
+    background-color: #227bd4;
+}
+.css-1lijw7u-JoyCard-root{
+    margin:8px;
+}
+.likeOrUnlike{
+    font-size: 1.6rem;
+}
+.css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root{
+    flex-direction: column;
+}
+.swal2-container{
+z-index: 1400;
+} 
