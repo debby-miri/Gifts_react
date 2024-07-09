@@ -29,7 +29,7 @@ export default function FullScreenDialog({ button }) {
     const EventsArray = GenderEventsCategoryStore.Events;
     const CategoryArray = GenderEventsCategoryStore.Category;
     const [open, setOpen] = React.useState(false);
-    const [s, setS] = React.useState({ 'Events': 1, 'Gender': 1, 'Categry': 1 })
+    const [s, setS] = React.useState({  })
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -55,11 +55,13 @@ export default function FullScreenDialog({ button }) {
         });
     };
     const handleInputChange = (e) => {
+        
         setS({
             ...s, [e.target.name]: e.target.value,
         });
     };
-
+    
+    console.log(s);
 
 
     return (

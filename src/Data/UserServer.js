@@ -1,5 +1,6 @@
 import axios from "axios";
 import Swal from "sweetalert2";
+import GiftsStore from "./GiftsStore";
 import UserStore from "./UserStore";
 //הרשמה
 export  async function SignUpFunc(user) {
@@ -31,6 +32,21 @@ export  async function SignInFunc(user) {
             if (res.data != null) {
                 UserStore.isLogin = true;
                 UserStore.setUser(res.data);
+            }
+        }
+    } catch (error) {
+        UserStore.isLogin = false;
+
+    }
+
+}
+
+export  async function getGiftsOfUser(userId) {
+    try {
+        let res = await axios.get(`https://localhost:7256/api/User/Gifts/${userId}`)
+        if (res.status == 200) {
+            if (res.data != null) {
+                GiftsStore.saveTemp(res.data)
             }
         }
     } catch (error) {

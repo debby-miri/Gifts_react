@@ -16,6 +16,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import PetOwnerStore from '../Data/UserStore';
 import UserStore from '../Data/UserStore';
 import { SignUpFunc } from '../Data/UserServer';
+import Swal from 'sweetalert2';
 
 function Copyright(props) {
   return (
@@ -47,7 +48,13 @@ export default function SignUp() {
     if(UserStore.isLogin){
       nav("../")
     }
-    
+    else{
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "There is already a user with these details in the system!",
+    })
+    }
   };
   function specialchars(str) {
     let chars = "$%^&*(){}[]<>=!?#,";

@@ -21,24 +21,35 @@ import { AddGift } from '../Data/GiftsServer';
 import Swal from 'sweetalert2';
 import './AGiftInList.css'
 import GiftsStore from '../Data/GiftsStore';
+import UserStore from '../Data/UserStore';
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
 export default function AddGiftDialog({ button }) {
 
-
+  
     const [open, setOpen] = React.useState(false);
     const GenderArray = GenderEventsCategoryStore.Gender;
     const EventsArray = GenderEventsCategoryStore.Events;
     const CategoryArray = GenderEventsCategoryStore.Category;
     const [gift, setGift] = React.useState({})
-    const [Cat, setCat] = React.useState('1')
+    const [Cat, setCat] = React.useState('1')  
+    if (open&&!UserStore.isLogin) {
+        setOpen(false);
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "you are not allowed!",
+            footer: '<a href="SignIn">sign in</a>'
+        })
+    }
     const handleClickOpen = () => {
         setOpen(true);
     };
     const handleFormSubmit = (e) => {
         e.preventDefault();
+        console.log(gift);
         const fieldCount = Object.keys(gift).length;
         if (fieldCount !== 10) {
             Swal.fire({
@@ -68,6 +79,7 @@ export default function AddGiftDialog({ button }) {
     };
 
     return (
+        
         <React.Fragment>
             <Button variant="outlined" onClick={handleClickOpen}>
                 add a gift <AddIcon fontSize='large'></AddIcon >
@@ -104,7 +116,7 @@ export default function AddGiftDialog({ button }) {
                             autoFocus
                             margin="dense"
                             id="Name"
-                            name="Name"
+                            name="name"
                             label="Name"
                             type="string"
                             fullWidth
@@ -119,7 +131,7 @@ export default function AddGiftDialog({ button }) {
                             autoFocus
                             margin="dense"
                             id="Description"
-                            name="Description"
+                            name="description"
                             label="Description"
                             type="string"
                             fullWidth
@@ -134,7 +146,7 @@ export default function AddGiftDialog({ button }) {
                             autoFocus
                             margin="dense"
                             id="Link"
-                            name="Link"
+                            name="link"
                             label="Link"
                             type="string"
                             fullWidth
@@ -149,7 +161,7 @@ export default function AddGiftDialog({ button }) {
                             autoFocus
                             margin="dense"
                             id="ImageUrl"
-                            name="ImageUrl"
+                            name="imageUrl"
                             label="Image Url"
                             type="string"
                             fullWidth
@@ -164,7 +176,7 @@ export default function AddGiftDialog({ button }) {
                             autoFocus
                             margin="dense"
                             id="EstimatedPrice"
-                            name="EstimatedPrice"
+                            name="estimatedPrice"
                             label="Estimate price"
                             type="number"
                             fullWidth
@@ -179,7 +191,7 @@ export default function AddGiftDialog({ button }) {
                             autoFocus
                             margin="dense"
                             id="StartingAge"
-                            name="StartingAge"
+                            name="startingAge"
                             label="Starting Age"
                             type="number"
                             fullWidth
@@ -206,7 +218,6 @@ export default function AddGiftDialog({ button }) {
                         <FormControl sx={{ mt: 2, minWidth: 500 }}>
                             <InputLabel htmlFor="Gender">Gender</InputLabel>
                             <Select
-                                defaultValue='1'
                                 value={gift.genderId}
                                 required
                                 onChange={handleInputChange}
@@ -224,7 +235,6 @@ export default function AddGiftDialog({ button }) {
                         <FormControl sx={{ mt: 2, minWidth: 500 }}>
                             <InputLabel htmlFor="Events">Events</InputLabel>
                             <Select
-                                defaultValue='1'
                                 value={gift.eventsId}
                                 required
                                 onChange={handleInputChange}
@@ -242,7 +252,6 @@ export default function AddGiftDialog({ button }) {
                         <FormControl sx={{ mt: 2, minWidth: 500 }}>
                             <InputLabel htmlFor="Categry">Categry</InputLabel>
                             <Select
-                                defaultValue='1'
                                 value={gift.categryId}
                                 required
                                 onChange={handleInputChange}

@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {  Link, useNavigate } from "react-router-dom";
 import { SignInFunc } from '../Data/UserServer';
 import UserStore from '../Data/UserStore';
+import Swal from 'sweetalert2';
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -41,6 +42,13 @@ export default function SignInSide() {
     SignInFunc(user);
     if(UserStore.isLogin){
       nav("../");
+    }
+    else{
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Incorrect details or you are blocked in the system!",
+    })
     }
   };
 

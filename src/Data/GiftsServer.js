@@ -22,11 +22,29 @@ export async function UpdatesViews(GiftId) {
             }
         }
     } catch (error) {
-        // UserStore.isLogin = false;
+    }
+}
+export async function UpdatesGifts(GiftId,gift) {
+    try {
+        let res = await axios.put(`https://localhost:7256/api/Gift/update/${GiftId}`,gift)
+        if (res.status == 200) {
+            if (res.data != null) {
+                  GiftsStore.UpdateGift(GiftId,res.data)
+            }
+        }
+    } catch (error) {
+    }
+}
+export async function DeleteGift(GiftId) {
+    try {
+        let res = await axios.delete(`https://localhost:7256/api/Gift/${GiftId}`,)
+        if (res.status == 200) {
+                  GiftsStore.delete(GiftId)
+        }
+    } catch (error) {
 
     }
 }
-
 
 
 export async function getAllGiftsFilter({ Age, EstimatedPrice, Gender, Events, Categry }) {
